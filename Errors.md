@@ -1,0 +1,5 @@
+Search never matched – search_songs() was checking if the song field contained the query (value in q) instead of the other way around, so no results ever showed; fixed to q in value.
+Chill‑keyword check wrong field – classify_song() looked for chill keywords in the title instead of the genre, leading to mis‑classified tracks; now both hype and chill keywords search the genre string.
+Stats math off – compute_playlist_stats() used len(hype) as the denominator for hype‑ratio and summed energy only over hype songs; corrected to use the total number of songs and total energy across all lists.
+Lucky‑pick incomplete and crashy – mode "any" ignored the Mixed playlist, and random_choice_or_none() raised an error on empty lists; now "any" includes Mixed, and the picker returns None when no songs are available.
+Average‑energy confusion – average energy calculation was dividing by the wrong count (and misleadingly commented); now clearly computes energy over all 
